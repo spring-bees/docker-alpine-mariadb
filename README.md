@@ -1,8 +1,9 @@
-= Mariadb Docker
+# Mariadb Docker
 
-[source, yaml]
-.docker-compose.yml
-----
+
+docker-compose.yml
+
+```yaml
 version: '3.2'
 services:
   spring-beet-mariadb:
@@ -19,11 +20,11 @@ services:
       - MYSQL_DATABASE=nacosdb
       - MYSQL_USER=nacosdb-user
       - MYSQL_PASSWORD=nacosdb-pass
-----
+```
 
-[source, properties]
-.my.cnf
-----
+my.cnf
+
+```properties
 [client]
 port=3306
 default-character-set=utf8
@@ -202,24 +203,25 @@ write_buffer=8M
 [mysqld_safe]
 #log-error                       =$MYSQLLOG/mysql.err
 #pid-file                        =$MYSQLBASE/mysql.pid
-----
+```
 
 端口
 
-....
+```
 3306
-....
+```
 
 环境变量
-[source, properties]
-----
+
+```properties
 MYSQL_ROOT_PASSWORD=<root_password> #root密码，默认111111
 MYSQL_DATABASE=<dbname1>,<dbname2> #数据库名,多个逗号分隔
 MYSQL_USER=<dbuser1>,<dbuser2> #数据库用户,多个逗号分隔
 MYSQL_PASSWORD=<dbpass1>,<dbpass2> #数据库用户密码,多个逗号分隔
-----
+```
 
 卷
-....
+
+```
 /app
-....
+```
