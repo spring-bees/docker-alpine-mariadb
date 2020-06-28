@@ -205,19 +205,21 @@ write_buffer=8M
 ----
 
 端口
-----
+
+....
 3306
-----
+....
 
 环境变量
+[source, properties]
 ----
-MYSQL_ROOT_PASSWORD root密码，默认111111
-MYSQL_DATABASE 数据库名,多个逗号分隔
-MYSQL_USER 数据库用户,多个逗号分隔
-MYSQL_PASSWORD 数据库用户密码,多个逗号分隔
+MYSQL_ROOT_PASSWORD=<root_password> #root密码，默认111111
+MYSQL_DATABASE=<dbname1>,<dbname2> #数据库名,多个逗号分隔
+MYSQL_USER=<dbuser1>,<dbuser2> #数据库用户,多个逗号分隔
+MYSQL_PASSWORD=<dbpass1>,<dbpass2> #数据库用户密码,多个逗号分隔
 ----
 
 卷
-----
+....
 /app
-----
+....
