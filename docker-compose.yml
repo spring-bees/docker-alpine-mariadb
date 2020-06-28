@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  mysql:
+    image: coolbeevip/docker-alpine-mariadb
+    hostname: mariadb
+    container_name: mariadb
+    ports:
+      - '3306:3306'
+    volumes:
+      - ~/mydocker/docker_volume/spring-beet-mariadb:/app:rw
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=mydb-user
+      - MYSQL_PASSWORD=mydb-pass
