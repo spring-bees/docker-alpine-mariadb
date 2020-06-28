@@ -1,4 +1,4 @@
-FROM coolbeevip/alpine-os:3.7
+FROM coolbeevip/docker-alpine:3.12
 
 MAINTAINER coolbeevip <coolbeevip@gmail.com>
 
