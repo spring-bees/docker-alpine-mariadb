@@ -1,35 +1,35 @@
-coolbeevip/alpine-mysql
+coolbeevip/docker-alpine-mariadb
 ==============
 
 启动
 -----
 ~~~~
 docker run \
-    --name mysql \
+    --name mariadb \
     -p 3306:3306 \
-    -v /data/docker_volume/oneitom-mysql:/app \
+    -v ~/mydocker/docker_volume/docker-alpine-mariadb:/app \
     -e TZ=Asia/Shanghai \
     -e  MYSQL_ROOT_PASSWORD=root \
     -e  MYSQL_DATABASE=mydb \
-    -e  MYSQL_USER=mydbuser \
-    -e  MYSQL_PASSWORD=mydbpassword \
-    coolbeevip/alpine-mysql 
-    
+    -e  MYSQL_USER=mydb-user \
+    -e  MYSQL_PASSWORD=mydb-pass \
+    coolbeevip/docker-alpine-mariadb
+
 ~~~~
 
 my.cnf
 -----
-    
+
 ~~~~
     [client]
     port=3306
     default-character-set=utf8
     socket=$MYSQLBASE/mysql.sock
-    
+
     [mysql]
     no-auto-rehash
     default-character-set=utf8
-    
+
     [mysqld]
     #************** basic ***************
     basedir                         =$MYSQLBASE
@@ -39,7 +39,7 @@ my.cnf
     socket                          =$MYSQLBASE/mysql.sock
     log-error                       =$MYSQLLOG/mysql.err
     pid-file                        =$MYSQLBASE/mysql.pid
-    
+
     #************** connection ***************
     max_connections                 =2000
     max_connect_errors              =100000
@@ -47,7 +47,7 @@ my.cnf
     #************** sql timeout & limits ***************
     #max_join_size                   =1000000
     max_execution_time              =10000
-    
+
     lock_wait_timeout               =60
     #autocommit                      =0
     lower_case_table_names          =1
@@ -68,7 +68,7 @@ my.cnf
     #sql_mode                        =NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO
     #init_file                       =$MYSQLBASE/conf/init_file.sql
     #init_slave
-    
+
     #******************* err & slow & general ***************
     #log_error                       =$MYSQLLOG/mysql.err
     #log_output                      ="TABLE,FILE"
@@ -79,7 +79,7 @@ my.cnf
     log_throttle_queries_not_using_indexes = 10
     general_log                     =OFF
     general_log_file                =$MYSQLLOG/general.log
-    
+
     #************** binlog & relaylog ***************
     # expire_logs_days                =7
     # sync_binlog                     =1            #建议值8-20
@@ -97,17 +97,17 @@ my.cnf
     # max_relay_log_size              =500M
     # relay_log_purge                 =ON
     # relay_log_recovery              =ON
-    
+
     #*************** group commit ***************
     binlog_group_commit_sync_delay              =1
     binlog_group_commit_sync_no_delay_count     =1000
-    
+
     #*************** gtid ***************
     gtid_mode                       =ON
     enforce_gtid_consistency        =ON
     master_verify_checksum          =ON
     sync_master_info                =1
-    
+
     #*************slave ***************
     # skip-slave-start                =1
     # #read_only                      =ON
@@ -119,13 +119,13 @@ my.cnf
     # slave_load_tmpdir               =$MYSQLTMP
     # slave_sql_verify_checksum       =ON
     # slave_preserve_commit_order     =1
-    
+
     #*************** muti thread slave ***************
     # slave_parallel_type                         =LOGICAL_CLOCK
     # slave_parallel_workers                      =4
     # master_info_repository                      =TABLE
     # relay_log_info_repository                   =TABLE
-    
+
     #*************** buffer & timeout ***************
     read_buffer_size                =80M
     read_rnd_buffer_size            =80M
@@ -139,7 +139,7 @@ my.cnf
     interactive_timeout             =600
     net_read_timeout                =30
     net_write_timeout               =30
-    
+
     #*********** myisam ***************
     # skip_external_locking           =ON
     # key_buffer_size                 =16M
@@ -148,7 +148,7 @@ my.cnf
     # open_files_limit                =65000
     # table_open_cache                =16000
     # table_definition_cache          =16000
-    
+
     #*********** innodb ***************
     default_storage_engine              =InnoDB
     default_tmp_storage_engine          =InnoDB
@@ -185,17 +185,17 @@ my.cnf
     innodb_rollback_on_timeout          =ON
     innodb_file_per_table=on
     #innodb_data_file_path=ibdata1:10M:autoextend
-    
+
     [mysqldump]
     quick
     max_allowed_packet=64M
-    
+
     [myisamchk]
     key_buffer=16M
     sort_buffer_size=16M
     read_buffer=8M
     write_buffer=8M
-    
+
     [mysqld_safe]
     #log-error                       =$MYSQLLOG/mysql.err
     #pid-file                        =$MYSQLBASE/mysql.pid
@@ -205,14 +205,14 @@ my.cnf
 -----
 
     3306
-    
+
 环境变量
 -----
     MYSQL_ROOT_PASSWORD root密码，默认111111
     MYSQL_DATABASE 数据库名,多个逗号分隔
     MYSQL_USER 数据库用户,多个逗号分隔
     MYSQL_PASSWORD 数据库用户密码,多个逗号分隔     
-    
+
 卷
 -----
 
