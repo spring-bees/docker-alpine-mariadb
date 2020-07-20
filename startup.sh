@@ -75,4 +75,4 @@ EOF
 fi
 
 
-exec /usr/bin/mysqld --innodb-flush-method=fsync --defaults-file=/app/my.cnf --user=root --console
+exec /usr/bin/mysqld --defaults-file=/app/my.cnf --innodb-flush-method=fsync --user=root --console
