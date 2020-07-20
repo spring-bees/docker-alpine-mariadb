@@ -7,7 +7,7 @@ docker-compose.yml
 version: '3.2'
 services:
   spring-beet-mariadb:
-    image: coolbeevip/docker-alpine-mariadb:10.1.41
+    image: coolbeevip/docker-alpine-mariadb:10.4.13
     hostname: spring-beet-mariadb
     container_name: spring-beet-mariadb
     ports:
