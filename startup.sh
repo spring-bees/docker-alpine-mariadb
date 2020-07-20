@@ -70,7 +70,7 @@ EOF
   fi
 
   cat $tfile
-  /usr/bin/mysqld --defaults-file=/app/my.cnf --user=root --bootstrap --verbose=0 < $tfile
+  /usr/bin/mysqld --defaults-file=/app/my.cnf --innodb-flush-method=fsync --user=root --bootstrap --verbose=0 < $tfile
   rm -f $tfile
 fi
 
